@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dorka & Kristóf</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", "Calibri Light" sans-serif;
+      color: #111;
+      background: #fff;
+      text-align: center;
+      line-height: 1.0;
+    }
+
+
+
+    header img {
+      max-width: 420px;
+      width: 100%;
+    }
+
+    section {
+      padding: 20px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    /* ===== FADE GALÉRIA ===== */
+    .fade-slider {
+      position: relative;
+      max-width: 700px;
+      height: 500px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .fade-slider img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .fade-slider img.active {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .fade-slider {
+        height: 1000x;
+      }
+    }
+
+    /* Text */
+    .description {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Footer */
+    footer {
+      padding: 60px 20px 80px;
+    }
+
+    footer a {
+      display: block;
+      margin: 15px 0;
+      color: #111;
+      text-decoration: none;
+      font-size: 16px;
+      border-bottom: 1px solid transparent;
+    }
+
+    footer a:hover {
+      border-bottom: 1px solid #111;
+    }
+
+    .map-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+#map {
+  width: 100%;
+  height: 400px;
+  margin: 30px 0;
+}
+  </style>
+</head>
+<body>
+
+  <!-- LOGÓ -->
+  <header>
+    <img src="./kepek/DK.png" alt="Dorka & Kristóf">
+  </header>
+
+  <!-- GALÉRIA (ÁTTŰNÉS) -->
+  <section>
+    <div class="fade-slider">
+      <img src="./kepek/image0.jpeg" class="active" alt="">
+      <img src="./kepek/image1.jpeg" alt="">
+      <img src="./kepek/image2.jpeg" alt="">
+      <img src="./kepek/image3.jpeg" alt="">
+      <img src="./kepek/image4.jpeg" alt="">
+    </div>
+  </section>
+
+  <!-- LEÍRÁS -->
+  <section>
+    <h2>Rólunk</h2>
+    <div class="description">
+      Ide jöhet egy rövid szöveg az esküvőről, a napról, rólunk, bármi,
+      amit szeretnétek megosztani a vendégekkel.
+      <br><br>
+      Letisztult, személyes, pont mint az egész nap.
+    </div>
+  </section>
+
+  <!-- LÁBLÉC -->
+  <footer>
+    <h2>Helyszín</h2>
+
+    <div class="map-wrapper">
+  <div id="map"></div>
+</div>
+
+    <a
+      href="https://www.google.com/maps/search/?api=1&query=Budapest,+Sz%C3%A9pv%C3%B6lgyi+d%C5%B1l%C5%91+1,+1024"
+      target="_blank"
+    >
+      Budapest, Szépvölgyi dűlő 1, 1024
+    </a>
+
+    <h1>Visszajelzés</h1>
+    <a href="https://forms.gle/IDE_JON_A_FORM_LINK" target="_blank">
+      Google Form
+    </a>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <!-- FADE GALÉRIA SCRIPT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const slides = document.querySelectorAll(".fade-slider img");
+      let current = 0;
+
+      setInterval(() => {
+        slides[current].classList.remove("active");
+        current = (current + 1) % slides.length;
+        slides[current].classList.add("active");
+      }, 6000);
+    });
+  </script>
+
+  <!-- GOOGLE MAP -->
+<script>
+function initMap() {
+    const weddingLocation = { lat: 47.54778488813416, lng: 18.995076657669756 };
+
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center: weddingLocation,
+        disableDefaultUI: true
+    });
+
+    const marker = new google.maps.Marker({
+        position: weddingLocation,
+        map: map,
+        title: "Esküvő helyszíne",
+        icon: {
+            url: './kepek/pingpong.png',   // ide a logó útvonala
+            scaledSize: new google.maps.Size(50, 50) // a marker mérete pixelben
+        },
+        animation: google.maps.Animation.BOUNCE
+    });
+}
+</script>
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCss5zjrYJD9pm86rCG-dq7ct0O-bof9Vg&callback=initMap"
+    async
+    defer
+  ></script>
+
+  <script src="./scripts/wow.min.js"></script>
+
+  <script src="./scripts/jquery-3.7.1.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="./scripts/slick.min.js"
+    integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="./scripts/jquery.lazy.min.js"
+    integrity="sha512-eviLb3jW7+OaVLz5N3B5F0hpluwkLb8wTXHOTy0CyNaZM5IlShxX1nEbODak/C0k9UdsrWjqIBKOFY0ELCCArw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="./scripts/all.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const openMenuButton = document.getElementById('openMenu');
+      const closeMenuButton = document.getElementById('closeMenu');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      openMenuButton.addEventListener('click', function () {
+        mobileMenu.classList.add('active');
+      });
+
+      closeMenuButton.addEventListener('click', function () {
+        mobileMenu.classList.remove('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
