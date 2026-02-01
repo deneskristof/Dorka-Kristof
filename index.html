@@ -71,6 +71,13 @@
       max-width: 700px;
       margin: 0 auto;
     }
+    .meghivo img {
+  max-width: 600px;   /* <-- itt állítod a méretet */
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
 
     /* Footer */
     footer {
@@ -100,6 +107,14 @@
   height: 400px;
   margin: 30px 0;
 }
+#countdown-section {
+  padding: 60px 20px 20px;
+}
+
+#countdown {
+  font-size: 20px;
+  letter-spacing: 0.08em;
+}
   </style>
 </head>
 <body>
@@ -121,13 +136,16 @@
   </section>
 
   <!-- LEÍRÁS -->
-  <section>
-    <h2>Rólunk</h2>
-    <div class="description">
-      Ide jöhet egy rövid szöveg az esküvőről, a napról, rólunk, bármi,
-      amit szeretnétek megosztani a vendégekkel.
-      <br><br>
-      Letisztult, személyes, pont mint az egész nap.
+<section>
+  <div class="meghivo">
+    <img src="./kepek/meghivo.png" alt="Meghívó">
+  </div>
+</section>
+
+    <section>
+    <h2>Étlap</h2>
+    <div class="etlap">
+      <img src="./kepek/étlap.png" alt="Étlap" style="max-width: 100%; height: auto;">
     </div>
   </section>
 
@@ -139,17 +157,14 @@
   <div id="map"></div>
 </div>
 
-    <a
-      href="https://www.google.com/maps/search/?api=1&query=Budapest,+Sz%C3%A9pv%C3%B6lgyi+d%C5%B1l%C5%91+1,+1024"
-      target="_blank"
-    >
-      Budapest, Szépvölgyi dűlő 1, 1024
-    </a>
-
     <h1>Visszajelzés</h1>
-    <a href="https://forms.gle/IDE_JON_A_FORM_LINK" target="_blank">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdeMJ263V-AOJREBpovLGkDY27A-fGiwtlgNs7UQXhyeArU1w/viewform?usp=publish-editor" target="_blank">
       Google Form
     </a>
+    <section id="countdown-section">
+  <h2 id="countdown-title">Még ennyi idő a Nagy Napig:</h2>
+  <div id="countdown"></div>
+</section>
   </footer>
 
   <!-- SCRIPTS -->
@@ -183,15 +198,22 @@ function initMap() {
     });
 
     const marker = new google.maps.Marker({
-        position: weddingLocation,
-        map: map,
-        title: "Esküvő helyszíne",
-        icon: {
-            url: './kepek/pingpong.png',   // ide a logó útvonala
-            scaledSize: new google.maps.Size(50, 50) // a marker mérete pixelben
-        },
-        animation: google.maps.Animation.BOUNCE
-    });
+  position: weddingLocation,
+  map: map,
+  title: "Esküvő helyszíne",
+  icon: {
+    url: "./kepek/pingpong.png",
+    scaledSize: new google.maps.Size(50, 50)
+  },
+  animation: google.maps.Animation.BOUNCE
+});
+
+const mapsUrl =
+  "https://www.google.com/maps/search/?api=1&query=Budapest,+Sz%C3%A9pv%C3%B6lgyi+d%C5%B1l%C5%91+1,+1024";
+
+marker.addListener("click", () => {
+  window.open(mapsUrl, "_blank");
+});
 }
 </script>
 
@@ -232,6 +254,35 @@ function initMap() {
       });
     });
   </script>
+  <script>
+  const countdownElement = document.getElementById("countdown");
+  const titleElement = document.getElementById("countdown-title");
+
+  const weddingDate = new Date("2026-09-12T00:00:00").getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    if (distance <= 0) {
+      titleElement.textContent = "Eljött a Nagy Nap 🎉";
+      countdownElement.textContent = "";
+      clearInterval(timer);
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((distance / (1000 * 60)) % 60);
+    const seconds = Math.floor((distance / 1000) % 60);
+
+    countdownElement.textContent =
+      `${days} nap ${hours} óra ${minutes} perc ${seconds} mp`;
+  }
+
+  updateCountdown();
+  const timer = setInterval(updateCountdown, 1000);
+</script>
 
 </body>
 </html>
