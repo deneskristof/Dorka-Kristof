@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dorka & Kristóf</title>
 
   <style>
@@ -71,13 +72,15 @@
       max-width: 700px;
       margin: 0 auto;
     }
+
     .meghivo img {
-  max-width: 600px;   /* <-- itt állítod a méretet */
-  width: 100%;
-  height: auto;
-  margin: 0 auto;
-  display: block;
-}
+      max-width: 600px;
+      /* <-- itt állítod a méretet */
+      width: 100%;
+      height: auto;
+      margin: 0 auto;
+      display: block;
+    }
 
     /* Footer */
     footer {
@@ -97,26 +100,73 @@
       border-bottom: 1px solid #111;
     }
 
+    .meghivo-card {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .meghivo-card h1 {
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    .meghivo-card p {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 40px 0;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      width: 60px;
+      height: 1px;
+      background: #111;
+      opacity: 0.25;
+    }
+
+    .divider span {
+      width: 6px;
+      height: 6px;
+      background: #111;
+      border-radius: 50%;
+      margin: 0 12px;
+      opacity: 0.4;
+    }
+
     .map-wrapper {
-  max-width: 900px;
-  margin: 0 auto;
-}
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
-#map {
-  width: 100%;
-  height: 400px;
-  margin: 30px 0;
-}
-#countdown-section {
-  padding: 60px 20px 20px;
-}
+    #map {
+      width: 100%;
+      height: 400px;
+      margin: 30px 0;
+    }
 
-#countdown {
-  font-size: 20px;
-  letter-spacing: 0.08em;
-}
+    #countdown-section {
+      padding: 60px 20px 20px;
+    }
+
+    #countdown {
+      font-size: 20px;
+      letter-spacing: 0.08em;
+    }
   </style>
 </head>
+
 <body>
 
   <!-- LOGÓ -->
@@ -136,13 +186,45 @@
   </section>
 
   <!-- LEÍRÁS -->
-<section>
-  <div class="meghivo">
-    <img src="./kepek/meghivo.png" alt="Meghívó">
-  </div>
-</section>
+  <section>
+    <div class="meghivo-card">
+      <h1>Esküvői meghívó</h1>
 
-    <section>
+      <div class="divider"><span></span></div>
+
+      <p>
+        Szeretettel meghívunk téged esküvőnkre és az azt követő vacsorára, hogy együtt ünnepelhessük életünk egyik
+        legszebb napját, melyet 2026.09.12-én tartunk a Hármashatárhegy szívében található Tündérerdőben.
+      </p>
+
+      <div class="divider"><span></span></div>
+
+      <p>
+        Kérünk, hogy időben érkezz, ugyanis 16:30-kor már kezdünk a vendégfogadással, ahol Réka által készített
+        finomságot is kóstolhattok. A ceremónia 17:00-kor kezdődik, majd ezt követően egy finom vacsorával folytatódik
+        az esemény. A nagy napunk egészen 21:00-ig tart, így a hazaút mindenkinek könnyen megoldható lesz akár még
+        nappali BKV járattal is, az este folytatására természetesen mindketten nyitottak vagyunk egy másik helyszínen!
+      </p>
+
+      <div class="divider"><span></span></div>
+
+      <p><em>
+          Ha nászajándékon töröd a fejed, hidd el egy borítékban a legszebb. Hogy el ne hagyjon minket a szerencse, egy
+          jó kaparós sorsjegyet is hozz a perselybe.
+        </em></p>
+
+      <div class="divider"><span></span></div>
+
+      <p>
+        Kérjük, jelezd részvételi szándékodat az alábbi kérdőív kitöltésével:
+      </p>
+    </div>
+  </section>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdeMJ263V-AOJREBpovLGkDY27A-fGiwtlgNs7UQXhyeArU1w/viewform?usp=dialog"
+    target="_blank">
+    Google Form
+  </a>
+  <section>
     <h2>Étlap</h2>
     <div class="etlap">
       <img src="./kepek/étlap.png" alt="Étlap" style="max-width: 100%; height: auto;">
@@ -154,17 +236,14 @@
     <h2>Helyszín</h2>
 
     <div class="map-wrapper">
-  <div id="map"></div>
-</div>
+      <div id="map"></div>
+    </div>
 
-    <h1>Visszajelzés</h1>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdeMJ263V-AOJREBpovLGkDY27A-fGiwtlgNs7UQXhyeArU1w/viewform?usp=dialog" target="_blank">
-      Google Form
-    </a>
+
     <section id="countdown-section">
-  <h2 id="countdown-title">Még ennyi idő a Nagy Napig:</h2>
-  <div id="countdown"></div>
-</section>
+      <h2 id="countdown-title">Még ennyi idő a Nagy Napig:</h2>
+      <div id="countdown"></div>
+    </section>
   </footer>
 
   <!-- SCRIPTS -->
@@ -187,41 +266,38 @@
   </script>
 
   <!-- GOOGLE MAP -->
-<script>
-function initMap() {
-    const weddingLocation = { lat: 47.54778488813416, lng: 18.995076657669756 };
+  <script>
+    function initMap() {
+      const weddingLocation = { lat: 47.54778488813416, lng: 18.995076657669756 };
 
-    const map = new google.maps.Map(document.getElementById("map"), {
+      const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 15,
         center: weddingLocation,
         disableDefaultUI: true
-    });
+      });
 
-    const marker = new google.maps.Marker({
-  position: weddingLocation,
-  map: map,
-  title: "Esküvő helyszíne",
-  icon: {
-    url: "./kepek/pingpong.png",
-    scaledSize: new google.maps.Size(50, 50)
-  },
-  animation: google.maps.Animation.BOUNCE
-});
+      const marker = new google.maps.Marker({
+        position: weddingLocation,
+        map: map,
+        title: "Esküvő helyszíne",
+        icon: {
+          url: "./kepek/pingpong.png",
+          scaledSize: new google.maps.Size(50, 50)
+        },
+        animation: google.maps.Animation.BOUNCE
+      });
 
-const mapsUrl =
-  "https://www.google.com/maps/search/?api=1&query=Budapest,+Sz%C3%A9pv%C3%B6lgyi+d%C5%B1l%C5%91+1,+1024";
+      const mapsUrl =
+        "https://www.google.com/maps/search/?api=1&query=Budapest,+Sz%C3%A9pv%C3%B6lgyi+d%C5%B1l%C5%91+1,+1024";
 
-marker.addListener("click", () => {
-  window.open(mapsUrl, "_blank");
-});
-}
-</script>
+      marker.addListener("click", () => {
+        window.open(mapsUrl, "_blank");
+      });
+    }
+  </script>
 
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCss5zjrYJD9pm86rCG-dq7ct0O-bof9Vg&callback=initMap"
-    async
-    defer
-  ></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCss5zjrYJD9pm86rCG-dq7ct0O-bof9Vg&callback=initMap"
+    async defer></script>
 
   <script src="./scripts/wow.min.js"></script>
 
@@ -255,34 +331,35 @@ marker.addListener("click", () => {
     });
   </script>
   <script>
-  const countdownElement = document.getElementById("countdown");
-  const titleElement = document.getElementById("countdown-title");
+    const countdownElement = document.getElementById("countdown");
+    const titleElement = document.getElementById("countdown-title");
 
-  const weddingDate = new Date("2026-09-12T00:00:00").getTime();
+    const weddingDate = new Date("2026-09-12T00:00:00").getTime();
 
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
 
-    if (distance <= 0) {
-      titleElement.textContent = "Eljött a Nagy Nap 🎉";
-      countdownElement.textContent = "";
-      clearInterval(timer);
-      return;
+      if (distance <= 0) {
+        titleElement.textContent = "Eljött a Nagy Nap 🎉";
+        countdownElement.textContent = "";
+        clearInterval(timer);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      countdownElement.textContent =
+        `${days} nap ${hours} óra ${minutes} perc ${seconds} mp`;
     }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((distance / (1000 * 60)) % 60);
-    const seconds = Math.floor((distance / 1000) % 60);
-
-    countdownElement.textContent =
-      `${days} nap ${hours} óra ${minutes} perc ${seconds} mp`;
-  }
-
-  updateCountdown();
-  const timer = setInterval(updateCountdown, 1000);
-</script>
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 1000);
+  </script>
 
 </body>
+
 </html>
