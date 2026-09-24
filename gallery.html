@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Esküvői galéria | Dorka & Kristóf</title>
+  <style>
+    :root {
+      --ivory: #f8f4f0;
+      --paper: #fffdfb;
+      --ink: #1b1b1b;
+      --muted: #737373;
+      --line: rgba(27, 27, 27, 0.12);
+      --accent: #d9c4b1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", "Calibri Light", sans-serif;
+      background: linear-gradient(180deg, var(--paper), var(--ivory));
+      color: var(--ink);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    header {
+      margin-bottom: 30px;
+    }
+
+    .brand {
+      max-width: 320px;
+      width: 100%;
+      margin: 0 auto 18px;
+      display: block;
+    }
+
+    .title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin: 0 0 12px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 16px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      margin: 24px 0 36px;
+    }
+
+    .nav a {
+      display: inline-block;
+      padding: 12px 20px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.4);
+      transition: all 0.2s ease;
+    }
+
+    .nav a:hover {
+      background: #fff;
+      transform: translateY(-1px);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .photo-card {
+      display: block;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(17, 17, 17, 0.04);
+      transition: transform 0.2s ease;
+      margin: 0;
+      cursor: zoom-in;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .photo-card img {
+      display: block;
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 24px;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      color: #111;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      z-index: 2;
+    }
+
+    .lightbox-nav.prev {
+      left: -16px;
+    }
+
+    .lightbox-nav.next {
+      right: -16px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: #fff;
+      color: #111;
+      font-size: 22px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      z-index: 3;
+    }
+
+    .footer-mark {
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .photo-card img {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <img class="brand" src="./kepek/DK.png" alt="Dorka & Kristóf" />
+      <h1 class="title">Esküvői galéria</h1>
+      <div class="subtitle">Együtt töltött pillanatok</div>
+    </header>
+
+    <nav class="nav">
+      <a href="./index.html">Vissza a főoldalra</a>
+    </nav>
+
+    <section class="gallery" id="gallery" aria-label="Wedding photo gallery"></section>
+
+    <div class="footer-mark">Dorka & Kristóf</div>
+  </div>
+
+  <div class="lightbox" id="lightbox" aria-label="Full size photo">
+    <div class="lightbox-content">
+      <button class="lightbox-nav prev" type="button" aria-label="Previous image">‹</button>
+      <button class="lightbox-close" aria-label="Close image">×</button>
+      <img id="lightbox-image" src="" alt="Full-size wedding photo" />
+      <button class="lightbox-nav next" type="button" aria-label="Next image">›</button>
+    </div>
+  </div>
+
+  <script src="./gallery-data.js"></script>
+  <script>
+    const gallery = document.getElementById('gallery');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const closeButton = document.querySelector('.lightbox-close');
+    const prevButton = document.querySelector('.lightbox-nav.prev');
+    const nextButton = document.querySelector('.lightbox-nav.next');
+    let currentImageIndex = 0;
+
+    galleryImages.forEach(({ preview, full }, index) => {
+      const figure = document.createElement('figure');
+      figure.className = 'photo-card';
+      figure.setAttribute('tabindex', '0');
+      figure.dataset.full = full;
+      figure.dataset.index = String(index);
+
+      const img = document.createElement('img');
+      img.src = preview;
+      img.alt = 'Wedding photo';
+      img.loading = 'lazy';
+
+      figure.appendChild(img);
+      gallery.appendChild(figure);
+    });
+
+    function showImage(index) {
+      if (!galleryImages.length) return;
+      currentImageIndex = (index + galleryImages.length) % galleryImages.length;
+      lightboxImage.src = galleryImages[currentImageIndex].full;
+    }
+
+    function openLightbox(index) {
+      showImage(index);
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      lightboxImage.src = '';
+    }
+
+    gallery.addEventListener('click', (event) => {
+      const card = event.target.closest('.photo-card');
+      if (!card) return;
+      openLightbox(Number(card.dataset.index));
+    });
+
+    gallery.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        const card = event.target.closest('.photo-card');
+        if (card) {
+          event.preventDefault();
+          openLightbox(Number(card.dataset.index));
+        }
+      }
+    });
+
+    prevButton.addEventListener('click', () => {
+      if (!lightbox.classList.contains('open')) return;
+      showImage(currentImageIndex - 1);
+    });
+
+    nextButton.addEventListener('click', () => {
+      if (!lightbox.classList.contains('open')) return;
+      showImage(currentImageIndex + 1);
+    });
+
+    closeButton.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && lightbox.classList.contains('open')) {
+        closeLightbox();
+      }
+
+      if (!lightbox.classList.contains('open')) return;
+
+      if (event.key === 'ArrowLeft') {
+        showImage(currentImageIndex - 1);
+      }
+
+      if (event.key === 'ArrowRight') {
+        showImage(currentImageIndex + 1);
+      }
+    });
+  </script>
+</body>
+
+</html>
